@@ -27,7 +27,29 @@ echo password=$ilopassword
 echo serverlist:
 echo ${ilolist[@]}
 
+export isLogin=0
+checkLogin()
+{
+	isLogin=`expect -c "
+			spawn ssh $ip -l $ilousername
+			expect {
+				(yes/no) {send \"yes\r\"; exp_continue}
+				password: {send \"$ilopassword\r\"; exp_continue}
+				> {send \"exit\r\"; exp_continue}
+			}
+		" | grep "logged" | wc -l`
+}
 for ip in ${ilolist[@]}
 do
-	echo $ip
+	echo Trying to connect to $ip...
+	checkLogin()
+	case $isLogin in
+		0)	echo "Login to $ip failed."
+			failedIPs=("$failedIPs[*]" $ip)
+			;;
+		1)	echo "Login to $ip successfully."
+			succIPs=("$succIPs[*]" $ip)
+			;;
+	esac
+	esac
 done
