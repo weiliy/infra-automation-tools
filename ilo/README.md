@@ -1,6 +1,6 @@
-# ilo-login-check
+## ilo-login-check
 
-## Useage
+### Useage
 
 ````
 ilo-login-check -u **USERNAME** -p **PASSWORD** [SERVER...]
@@ -10,7 +10,7 @@ ilo-login-check -u **USERNAME** -p **PASSWORD** [SERVER...]
 * -p : password  
 * [SERVER...] : ilo ip list
 
-## Example
+### Example
 
 ````
 $ ./ilo-login-check.sh -u user1 -p password 10.200.{129,130}.{20..22}

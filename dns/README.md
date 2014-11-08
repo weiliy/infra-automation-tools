@@ -1,8 +1,8 @@
-# dns-verify
+## dns-verify
 
 Verify DNS record
 
-## Usage
+### Usage
 
 1. put the dns record to a file, below is the example:
 
